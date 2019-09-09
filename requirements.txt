@@ -1,0 +1,11 @@
+numpy
+scipy
+Sphinx
+numpydoc 
+nose 
+pykalman
+pandas
+scikit-learn
+statsmodels
+pydocs
+
