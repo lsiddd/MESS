@@ -17,28 +17,29 @@ def read_file(filename, node_id, coord = "x"):
             raise ValueError("invalid coordinate")
         return lines
 
-for i in range (1):
-    observations_x = read_file("./SanFrancisco.tcl", i, "x")
-    observations_y = read_file("./SanFrancisco.tcl", i, "y")
+def kalman():
+    for i in range (1):
+        observations_x = read_file("./SanFrancisco.tcl", i, "x")
+        observations_y = read_file("./SanFrancisco.tcl", i, "y")
 
-    kf = KalmanFilter(transition_matrices=np.array([[1, 1], [0, 1]]),
-                      transition_covariance=0.01 * np.eye(2))
-    states_pred_x = kf.em(observations_x).smooth(observations_x)[0]
-    states_pred_y = kf.em(observations_y).smooth(observations_y)[0]
+        kf = KalmanFilter(transition_matrices=np.array([[1, 1], [0, 1]]),
+                          transition_covariance=0.01 * np.eye(2))
+        states_pred_x = kf.em(observations_x).smooth(observations_x)[0]
+        states_pred_y = kf.em(observations_y).smooth(observations_y)[0]
 
-    mse = sum((states_pred_x[:, 0] - observations_x)**2) / len(observations_x)
-    print(mse)
-    print(states_pred_x)
-    
-    plt.style.use("ggplot")
-    plt.grid(True)
-    plt.plot(states_pred_x[:, 0], label="predicted data")
-    plt.plot(observations_x, label="observations")
-    # plt.scatter(states_pred_x[:, 0][10:], states_pred_y[:, 0][10:], label="predicted data")
-    # plt.scatter(observations_x[10:], observations_y[10:], label="raw data")
-    plt.legend()
-    plt.figure()
-    plt.plot(observations_x - states_pred_x[:,0], label="X coordinate error")
-    plt.plot(observations_y - states_pred_y[:,0], label="Y coordinate error")
-    plt.legend()
-    plt.show()
+        mse = sum((states_pred_x[:, 0] - observations_x)**2) / len(observations_x)
+        print(mse)
+        print(states_pred_x)
+        
+        plt.style.use("ggplot")
+        plt.grid(True)
+        plt.plot(states_pred_x[:, 0], label="predicted data")
+        plt.plot(observations_x, label="observations")
+        # plt.scatter(states_pred_x[:, 0][10:], states_pred_y[:, 0][10:], label="predicted data")
+        # plt.scatter(observations_x[10:], observations_y[10:], label="raw data")
+        plt.legend()
+        plt.figure()
+        plt.plot(observations_x - states_pred_x[:,0], label="X coordinate error")
+        plt.plot(observations_y - states_pred_y[:,0], label="Y coordinate error")
+        plt.legend()
+        plt.show()
