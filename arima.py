@@ -46,7 +46,7 @@ def arima():
         # print('Test MSE: %.3f' % error)
         mse.append(error)
 
-    return error
+    return mse
 
 def kalman():
     error = []
@@ -67,6 +67,9 @@ def kalman():
 
 arima_preds = arima()
 kalman_preds = kalman()
+
+print (arima_preds)
+print (kalman_preds)
 
 print(np.mean(arima_preds))
 print(np.mean(kalman_preds))
