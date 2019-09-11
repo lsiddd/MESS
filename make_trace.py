@@ -7,9 +7,9 @@ import random
 def main():
     R = 6371
 
-    number_of_users = 50
+    number_of_users = 100
     number_of_samples = 100
-    number_of_cells = 100
+    number_of_cells = 200
 
     filenames = glob("new*.txt")
     user = 0
@@ -32,9 +32,9 @@ def main():
 
             second = 0
 
-            outfile.write("$node_({}) set X_ {}\n".format(user, x_pos))
-            outfile.write("$node_({}) set Y_ {}\n".format(user, y_pos))
-            outfile.write("$node_({}) set Z_ 1\n".format(user))
+            # outfile.write("$node_({}) set X_ {}\n".format(user, x_pos))
+            # outfile.write("$node_({}) set Y_ {}\n".format(user, y_pos))
+            # outfile.write("$node_({}) set Z_ 1\n".format(user))
 
             for line in lines:
                 x_pos = R * cos(float(line[0])) * cos(float(line[1]))
@@ -61,8 +61,8 @@ def main():
     x = []
     y = []
     for i in random.sample(list(zip(x_plot, y_plot)), number_of_cells):
-        x.append( i[0] + random.uniform(-50,50) )
-        y.append( i[1] + random.uniform(-400,300) )
+        x.append( i[0] + random.uniform(-20,20) )
+        y.append( i[1] + random.uniform(-40,30) )
         cellsFile.write(f"{id} {x[-1]} {y[-1]}\n")
         id += 1
     cellsFile.close()
