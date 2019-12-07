@@ -11,7 +11,7 @@ def main():
     number_of_samples = 100
     number_of_cells = 200
 
-    filenames = glob("new*.txt")
+    filenames = glob("traces/new*.txt")
     user = 0
     outfile = open("SanFrancisco.tcl", "w")
 
